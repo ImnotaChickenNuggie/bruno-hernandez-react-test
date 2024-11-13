@@ -1,0 +1,127 @@
+@import './variables';
+
+.container-products {
+	display: flex;
+	flex-direction: column;
+	margin-left: 5rem;
+	margin-right: 5rem;
+}
+
+.buttonCreateProduct {
+	background-color: #94ddaa;
+	text-decoration-line: none;
+	padding: 8px;
+	width: 12rem;
+	border-radius: 5px;
+	color: $black;
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.container-utils {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.buttonDelete {
+	background-color: #f87171;
+	text-decoration-line: none;
+	padding: 8px;
+	width: 12rem;
+	border-radius: 5px;
+	color: $black;
+	font-weight: 400;
+	text-align: center;
+	border: 0;
+	cursor: pointer;
+}
+
+.inputSearch {
+	padding: 4px;
+	border-radius: 4px;
+	border: solid 1px;
+	font-size: 1.2rem;
+}
+
+table {
+	width: 100%;
+	max-width: 800px;
+	margin: 2rem auto 2rem;
+	border-collapse: collapse;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+	thead {
+		background-color: #333;
+		color: white;
+
+		th {
+			padding: 12px;
+			font-weight: bold;
+			text-align: left;
+		}
+	}
+
+	tbody {
+		tr {
+			&:nth-child(odd) {
+				background-color: #f9f9f9;
+			}
+
+			&:nth-child(even) {
+				background-color: #eaeaea;
+			}
+
+			&:hover {
+				background-color: #ddd;
+				cursor: pointer;
+			}
+
+			td {
+				padding: 10px;
+				border-bottom: 1px solid #ccc;
+				text-align: left;
+
+				&:first-child {
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+
+.textNotFound {
+	font-size: 1.2rem;
+	font-weight: 800;
+	text-align: center;
+}
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px 0;
+	gap: 10px;
+
+	button {
+		background-color: #f0f0f0;
+		color: #333;
+		border: none;
+		border-radius: 5px;
+		padding: 8px 16px;
+		font-size: 1.2rem;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+
+		&:hover:not(:disabled) {
+			background-color: #ddd;
+		}
+
+		&:disabled {
+			background-color: #333;
+			color: white;
+			cursor: default;
+		}
+	}
+}

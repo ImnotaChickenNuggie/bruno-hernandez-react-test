@@ -1,60 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login, logout } from '../../redux/slices/authSlice';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../redux/slices/authSlice';
 import { AppDispatch } from '../../redux/store';
+import '../../styles/login.scss';
 
 const Login: React.FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
+	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
-	let inactive: NodeJS.Timeout;
-
-	const timerReset = () => {
-		clearTimeout(inactive);
-		inactive = setTimeout(() => {
-			dispatch(logout());
-		}, 5 * 60 * 1000);
-	};
-
-	useEffect(() => {
-		timerReset();
-		window.addEventListener('mousemove', timerReset);
-		window.addEventListener('keydown', timerReset);
-		window.addEventListener('click', timerReset);
-
-		return () => {
-			// Limpiar temporizador y eventos al desmontar
-			clearTimeout(inactive);
-			window.removeEventListener('mousemove', timerReset);
-			window.removeEventListener('keydown', timerReset);
-			window.removeEventListener('click', timerReset);
-		};
-	}, [dispatch]);
 
 	const handleLogin = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
 			await dispatch(login({ email, password })).unwrap();
+			navigate('/products');
 		} catch (err) {
 			setError('Error');
 		}
 	};
 	return (
 		<div>
+			<h1 className='text-center'>Inicia Sesión</h1>
 			<form onSubmit={handleLogin}>
-				<div>
+				<div className='input-container'>
 					<label>Email</label>
 					<input
+						className='input-data'
 						type='email'
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
 					/>
 				</div>
-				<div>
+				<div className='input-container'>
 					<label>Contraseña</label>
 					<input
+						className='input-data'
 						type='password'
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
@@ -62,9 +46,8 @@ const Login: React.FC = () => {
 					/>
 				</div>
 				{error && <p>{error}</p>}
-				<button type='submit'>Ingresar</button>
+				<button className='buttonLogin' type='submit'>Ingresar</button>
 			</form>
-			<button onClick={() => dispatch(logout())}>Cerrar sesion</button>
 		</div>
 	);
 };

@@ -1,0 +1,48 @@
+@import './variables';
+
+.product-details {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  
+    h1 {
+      font-size: 2rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+  
+    img {
+      width: 100%;
+      max-width: 300px;
+      margin: 15px 0;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+  
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      margin: 8px 0;
+      line-height: 1.5;
+  
+      &.price {
+        font-weight: bold;
+        font-size: 1.3rem;
+        color: $primary;
+      }
+  
+      &.rating {
+        color: #777;
+        font-style: italic;
+      }
+    }
+  }
+  

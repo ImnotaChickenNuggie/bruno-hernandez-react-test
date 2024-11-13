@@ -1,0 +1,46 @@
+@import './variables';
+
+h1 {
+	text-align: center;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	width: 50%;
+	background-color: #bfdbfe;
+	padding: 16px;
+	border-radius: 10px;
+}
+
+.input-container {
+	display: flex;
+	flex-direction: column;
+	font-size: 0.91rem;
+	color: $black;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.input-data{
+    border-radius: 6px;
+    border: 0;
+    padding: 6px;
+    height: 1.25rem;
+}
+
+.buttonLogin{
+    border:0;
+    border-radius: 10px;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+    margin: auto;
+    cursor: pointer;
+    background-color: $secondary;
+    color: $white;
+
+}

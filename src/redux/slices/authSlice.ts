@@ -25,12 +25,33 @@ export const login = createAsyncThunk(
 		try {
 			const token = encryptData(email + password);
 
-			Cookies.set('user', encryptData(JSON.stringify({ email })), { expires: 1 });
+			Cookies.set('user', encryptData(JSON.stringify({ email })), {
+				expires: 1,
+			});
 			Cookies.set('token', token, { expires: 1 });
 
 			return { email };
 		} catch (error) {
 			return rejectWithValue('Error al iniciar sesión');
+		}
+	}
+);
+
+export const updateUser = createAsyncThunk(
+	'auth/updateUser',
+	async (
+		{ email, password }: { email: string; password: string },
+		{ rejectWithValue }
+	) => {
+		try {
+			const updatedUser = { email };
+			Cookies.set('user', encryptData(JSON.stringify(updatedUser)), {
+				expires: 1,
+			});
+
+			return { email };
+		} catch (error) {
+			return rejectWithValue('Error');
 		}
 	}
 );
@@ -69,6 +90,22 @@ const authSlice = createSlice({
 				}
 			)
 			.addCase(login.rejected, (state, action) => {
+				state.status = 'failed';
+				state.error = action.payload as string;
+			});
+		builder
+			.addCase(updateUser.pending, (state) => {
+				state.status = 'loading';
+				state.error = null;
+			})
+			.addCase(
+				updateUser.fulfilled,
+				(state, action: PayloadAction<{ email: string }>) => {
+					state.status = 'idle';
+					state.user = { email: action.payload.email };
+				}
+			)
+			.addCase(updateUser.rejected, (state, action) => {
 				state.status = 'failed';
 				state.error = action.payload as string;
 			});
